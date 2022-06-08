@@ -1,5 +1,11 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import Paris from '../images/paris.jpg'
+import Bangkok from '../images/bangkok.jpg'
+import London from '../images/london.jpg'
+import NewYork from '../images/newyork.jpg'
+import Dubai from '../images/dubai.jpg'
+import '../pages/index.css'
 
 import ThoughtList from '../components/ThoughtList';
 import ThoughtForm from '../components/ThoughtForm';
@@ -32,13 +38,33 @@ const Home = () => {
         </div>
       </div>
       <div className='top'>
-      <ol>
-      <li>Paris</li>
-      <li>Bangkok</li>
-      <li>London</li>
-      <li>New York</li>
-      <li>Dubai</li>
-      </ol>
+        <div className='img'>
+        Paris
+          <ul><img src={Paris} alt='' className='i-img'></img></ul>
+        </div>
+      
+      
+        <div className='img'>
+        Bangkok
+          <ul><img src={Bangkok} alt='' className='i-img'></img></ul>
+        </div>
+      
+      
+        <div className='img'>
+        London
+          <ul><img src={London} alt='' className='i-img'></img></ul>
+        </div>
+      
+        <div className='img'>
+        New York
+          <ul><img src={NewYork} alt='' className='i-img'></img></ul>
+        </div>
+      
+
+        <div className='img'>
+        Dubai
+          <ul><img src={Dubai} alt='' className='i-img'></img></ul>
+        </div>
     </div>
     </main>
   );
