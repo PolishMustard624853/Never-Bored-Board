@@ -4,3 +4,7 @@ img {
     object-fit: cover;
     border-radius: 40px;
 }
+
+body {
+    background-color: rgba(233, 106, 43, 0.75);
+}
