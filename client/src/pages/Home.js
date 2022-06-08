@@ -11,6 +11,7 @@ const Home = () => {
   const thoughts = data?.thoughts || [];
 
   return (
+    
     <main>
       <div className="flex-row justify-center">
         <div
@@ -30,8 +31,18 @@ const Home = () => {
           )}
         </div>
       </div>
+      <div className='top'>
+      <ol>
+      <li>Paris</li>
+      <li>Bangkok</li>
+      <li>London</li>
+      <li>New York</li>
+      <li>Dubai</li>
+      </ol>
+    </div>
     </main>
   );
+
 };
 
 export default Home;
