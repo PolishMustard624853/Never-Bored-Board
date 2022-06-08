@@ -8,7 +8,14 @@ const ThoughtList = ({
   showUsername = true,
 }) => {
   if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>;
+    return <h3>Top Visited Locations</h3>;
+    <ol>
+      <li>Paris</li>
+      <li>Bangkok</li>
+      <li>London</li>
+      <li>New York</li>
+      <li>Dubai</li>
+    </ol>
   }
 
   return (
