@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -24,12 +24,12 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_LOCATION = gql`
+  mutation addLocation($locationText: String!) {
+    addLocation(locationText: $locationText) {
       _id
-      thoughtText
-      thoughtAuthor
+      locationText
+      locationAuthor
       createdAt
       comments {
         _id
@@ -40,11 +40,11 @@ export const ADD_THOUGHT = gql`
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+  mutation addComment($locationId: ID!, $commentText: String!) {
+    addComment(locationId: $locationId, commentText: $commentText) {
       _id
-      thoughtText
-      thoughtAuthor
+      locationText
+      locationAuthor
       createdAt
       comments {
         _id
