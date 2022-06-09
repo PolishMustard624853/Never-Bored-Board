@@ -1,49 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const ThoughtList = ({
-  thoughts,
+const LocationList = ({
+  locations,
   title,
   showTitle = true,
   showUsername = true,
 }) => {
-  if (!thoughts.length) {
+  if (!locations.length) {
     return <h3>Top Visited Locations</h3>;
   }
 
   return (
     <div>
       {showTitle && <h3>{title}</h3>}
-      {thoughts &&
-        thoughts.map((thought) => (
-          <div key={thought._id} className="card mb-3">
+      {locations &&
+        locations.map((location) => (
+          <div key={location._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {showUsername ? (
                 <Link
                   className="text-light"
-                  to={`/profiles/${thought.thoughtAuthor}`}
+                  to={`/profiles/${location.locationAuthor}`}
                 >
-                  {thought.thoughtAuthor} <br />
-                  <span style={{ fontSize: '1rem' }}>
-                    had this thought on {thought.createdAt}
+                  {location.locationAuthor} <br />
+                  <span style={{ fontSize: "1rem" }}>
+                    saved this location on {location.createdAt}
                   </span>
                 </Link>
               ) : (
                 <>
-                  <span style={{ fontSize: '1rem' }}>
-                    You had this thought on {thought.createdAt}
+                  <span style={{ fontSize: "1rem" }}>
+                    You saved this location on {location.createdAt}
                   </span>
                 </>
               )}
             </h4>
             <div className="card-body bg-light p-2">
-              <p>{thought.thoughtText}</p>
+              <p>{location.locationText}</p>
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"
-              to={`/thoughts/${thought._id}`}
+              to={`/locations/${location._id}`}
             >
-              Join the discussion on this thought.
+              Click for details.
             </Link>
           </div>
         ))}
@@ -51,4 +51,4 @@ const ThoughtList = ({
   );
 };
 
-export default ThoughtList;
+export default LocationList;
