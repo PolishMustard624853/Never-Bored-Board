@@ -7,7 +7,7 @@ export const searchRestaurants = () => {
     method: "POST",
     headers: {
       "content-type": "application/x-www-form-urlencoded",
-      "X-RapidAPI-Key": "f4dc3fd3d3msh037fd1e63aa251cp13ad11jsnb3b66396915d",
+      "X-RapidAPI-Key": "a2fc1981a8mshec655d148fe3845p10f815jsn3ec993597989",
       "X-RapidAPI-Host": "worldwide-restaurants.p.rapidapi.com",
     },
     body: encodedParams,
@@ -30,7 +30,7 @@ export const searchRestaurants = () => {
         headers: {
           "content-type": "application/x-www-form-urlencoded",
           "X-RapidAPI-Key":
-            "f4dc3fd3d3msh037fd1e63aa251cp13ad11jsnb3b66396915d",
+            "a2fc1981a8mshec655d148fe3845p10f815jsn3ec993597989",
           "X-RapidAPI-Host": "worldwide-restaurants.p.rapidapi.com",
         },
         body: encodedParams,
@@ -39,7 +39,8 @@ export const searchRestaurants = () => {
       return fetch(
         "https://worldwide-restaurants.p.rapidapi.com/search",
         options
-      ).then((response) => response.json());
+      );
+      // ).then((response) => response.json());
       // .then((response) => console.log(response))
       // .catch((err) => console.error(err));
     })

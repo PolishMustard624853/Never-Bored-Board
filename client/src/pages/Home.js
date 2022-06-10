@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 // imgs
 import Paris from "../images/paris.jpg";
@@ -16,17 +16,26 @@ import {
 } from "../utils/localStorage";
 import { QUERY_LOCATIONS } from "../utils/queries";
 import Auth from "../utils/auth";
+import {
+  Jumbotron,
+  Container,
+  Col,
+  Form,
+  Button,
+  Card,
+  CardColumns,
+} from "react-bootstrap";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
-  const [searchedRestaurants, setSearchedRestaurants] = [];
-  const [searchInput, setSearchInput] = "";
+  const [searchedRestaurants, setSearchedRestaurants] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [savedRestaurantIds, setSavedRestaurantIds] = getSavedRestaurantIds();
 
-  useEffect(() => {
-    return () => saveRestaurantIds(savedRestaurantIds);
-  });
+  // useEffect(() => {
+  //   return () => saveRestaurantIds(savedRestaurantIds);
+  // });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -42,13 +51,20 @@ const Home = () => {
         throw new Error("something went wrong!");
       }
 
-      const { items } = await response.json();
-
-      const restaurantData = items.map((restaurant) => ({
+      const {
+        results: { data },
+      } = await response.json();
+      console.log(data);
+      const restaurantData = data.map((restaurant) => ({
         restaurantId: restaurant.id,
         // authors: book.volumeInfo.authors || ['No author to display'],
         // title: book.volumeInfo.title,
-        description: restaurant.volumeInfo.description,
+        name: restaurant.name,
+        description: restaurant.description,
+        address: restaurant.address,
+        photo: restaurant.photo.images.small.url,
+        // is_closed: restaurant.hours.is_closed,
+
         // image: book.volumeInfo.imageLinks?.thumbnail || '',
       }));
 
@@ -125,7 +141,11 @@ const Home = () => {
         <CardColumns>
           {searchedRestaurants.map((restaurant) => {
             return (
-              <Card key={restaurant.restaurantId} border="dark">
+              <Card
+                style={{ backgroundColor: "white" }}
+                key={restaurant.restaurantId}
+                border="dark"
+              >
                 {restaurant.image ? (
                   <Card.Img
                     src={restaurant.image}
@@ -134,9 +154,11 @@ const Home = () => {
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{restaurant.title}</Card.Title>
-                  <p className="small">Authors: {restaurant.authors}</p>
+                  <Card.Title>{restaurant.name}</Card.Title>
+                  <p className="small">Address: {restaurant.address}</p>
                   <Card.Text>{restaurant.description}</Card.Text>
+                  {/* <Card.Text>{restaurant.is_closed.toString()}</Card.Text> */}
+                  <img src={restaurant.photo}></img>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedRestaurantIds?.some(
