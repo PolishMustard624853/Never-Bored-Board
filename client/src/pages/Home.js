@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
+// imgs
 import Paris from "../images/paris.jpg";
 import Bangkok from "../images/bangkok.jpg";
 import London from "../images/london.jpg";
@@ -9,17 +10,19 @@ import "../pages/index.css";
 import { searchRestaurants } from "../utils/api";
 import LocationList from "../components/LocationList";
 import LocationForm from "../components/LocationForm";
-
+import {
+  saveRestaurantIds,
+  getSavedRestaurantIds,
+} from "../utils/localStorage";
 import { QUERY_LOCATIONS } from "../utils/queries";
+import Auth from "../utils/auth";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_LOCATIONS);
   const locations = data?.locations || [];
-  const [searchedRestaurants, setSearchedRestaurants] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-  const [savedRestaurantIds, setSavedRestaurantIds] = useState(
-    getSavedRestaurantIds()
-  );
+  const [searchedRestaurants, setSearchedRestaurants] = [];
+  const [searchInput, setSearchInput] = "";
+  const [savedRestaurantIds, setSavedRestaurantIds] = getSavedRestaurantIds();
 
   useEffect(() => {
     return () => saveRestaurantIds(savedRestaurantIds);
@@ -45,7 +48,7 @@ const Home = () => {
         restaurantId: restaurant.id,
         // authors: book.volumeInfo.authors || ['No author to display'],
         // title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
+        description: restaurant.volumeInfo.description,
         // image: book.volumeInfo.imageLinks?.thumbnail || '',
       }));
 
@@ -70,7 +73,7 @@ const Home = () => {
     }
 
     try {
-      const response = await saveRestaurant(restaurantToSave, token);
+      const response = await searchRestaurants(restaurantToSave, token);
 
       if (!response.ok) {
         throw new Error("something went wrong!");
