@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import Paris from "../images/paris.jpg";
-import Bangkok from "../images/bangkok.jpg";
-import London from "../images/london.jpg";
-import NewYork from "../images/newyork.jpg";
-import Dubai from "../images/dubai.jpg";
+// import Paris from "../images/paris.jpg";
+// import Bangkok from "../images/bangkok.jpg";
+// import London from "../images/london.jpg";
+// import NewYork from "../images/newyork.jpg";
+// import Dubai from "../images/dubai.jpg";
 import "../pages/index.css";
 
 import LocationList from "../components/LocationList";
@@ -36,7 +36,8 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className="top">
+      {/* top locations placeholder */}
+      {/* <div className="top">
         <div className="img">
           Paris
           <ul>
@@ -71,7 +72,7 @@ const Home = () => {
             <img src={Dubai} alt="" className="i-img"></img>
           </ul>
         </div>
-      </div>
+      </div> */}
     </main>
   );
 };
