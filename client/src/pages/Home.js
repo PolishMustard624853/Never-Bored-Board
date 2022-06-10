@@ -31,11 +31,11 @@ const Home = () => {
   const locations = data?.locations || [];
   const [searchedRestaurants, setSearchedRestaurants] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [savedRestaurantIds, setSavedRestaurantIds] = getSavedRestaurantIds();
+  const [savedRestaurantIds, setSavedRestaurantIds] = useState(getSavedRestaurantIds());
 
-  // useEffect(() => {
-  //   return () => saveRestaurantIds(savedRestaurantIds);
-  // });
+  useEffect(() => {
+    return () => saveRestaurantIds(savedRestaurantIds);
+  });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -56,7 +56,7 @@ const Home = () => {
       } = await response.json();
       console.log(data);
       const restaurantData = data.map((restaurant) => ({
-        restaurantId: restaurant.id,
+        restaurantId: restaurant.location_id,
         // authors: book.volumeInfo.authors || ['No author to display'],
         // title: book.volumeInfo.title,
         name: restaurant.name,
@@ -96,6 +96,8 @@ const Home = () => {
       }
 
       // if book successfully saves to user's account, save book id to state
+      console.log(restaurantToSave)
+      console.log(savedRestaurantIds)
       setSavedRestaurantIds([
         ...savedRestaurantIds,
         restaurantToSave.restaurantId,
