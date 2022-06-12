@@ -8,7 +8,7 @@ const LocationList = ({
   showUsername = true,
 }) => {
   if (!locations.length) {
-    return <h3>Top Visited Locations</h3>;
+    return <h3> </h3>;
   }
 
   return (

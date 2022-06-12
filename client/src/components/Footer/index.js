@@ -15,10 +15,10 @@ const Footer = () => {
             &larr; Go Back
           </button>
         )}
-        <h3>
+        <h3 style={{textAlign: "center", backgroundColor: "pink", borderRadius: "10px" }}>
         © Copyright Protected
         </h3>
-        <h4>
+        <h4 style={{textAlign: "center", backgroundColor: "pink", borderRadius: "10px" }}>
           by the Never Bored Board Board of Directors.
         </h4>
       </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 // imgs
-import Paris from "../images/paris.jpg";
-import Bangkok from "../images/bangkok.jpg";
-import London from "../images/london.jpg";
-import NewYork from "../images/newyork.jpg";
-import Dubai from "../images/dubai.jpg";
+// import Paris from "../images/paris.jpg";
+// import Bangkok from "../images/bangkok.jpg";
+// import London from "../images/london.jpg";
+// import NewYork from "../images/newyork.jpg";
+// import Dubai from "../images/dubai.jpg";
 import "../pages/index.css";
 import { searchRestaurants } from "../utils/api";
 import LocationList from "../components/LocationList";
@@ -109,8 +109,8 @@ const Home = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
+      <Jumbotron md={12} style={{textAlign: "center", backgroundColor: "pink", borderRadius: "10px" }}>
+        <Container >
           <h1>Search for Restaurants!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
@@ -121,10 +121,10 @@ const Home = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Search for a restaurant"
+                  placeholder="Search for a city"
                 />
               </Col>
-              <Col xs={12} md={4}>
+              <Col xs={12} md={8}>
                 <Button type="submit" variant="success" size="lg">
                   Submit Search
                 </Button>
@@ -135,16 +135,16 @@ const Home = () => {
       </Jumbotron>
 
       <Container>
-        <h2>
+        {/* <h2>
           {searchedRestaurants.length
             ? `Viewing ${searchedRestaurants.length} results:`
             : "Search for a restaurant to begin"}
-        </h2>
+        </h2> */}
         <CardColumns>
           {searchedRestaurants.map((restaurant) => {
             return (
               <Card
-                style={{ backgroundColor: "white" }}
+                style={{ backgroundColor: "lightblue", borderRadius: "10px" }}
                 key={restaurant.restaurantId}
                 border="dark"
               >
@@ -156,7 +156,7 @@ const Home = () => {
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{restaurant.name}</Card.Title>
+                  <Card.Title><h1>{restaurant.name}</h1></Card.Title>
                   <p className="small">Address: {restaurant.address}</p>
                   <Card.Text>{restaurant.description}</Card.Text>
                   {/* <Card.Text>{restaurant.is_closed.toString()}</Card.Text> */}
@@ -189,10 +189,6 @@ const Home = () => {
 
       <main>
         <div className="flex-row justify-center">
-          <div
-            className="col-12 col-md-10 mb-3 p-3"
-            style={{ border: "1px dotted #1a1a1a" }}
-          >
             <LocationForm />
           </div>
           <div className="col-12 col-md-8 mb-3">
@@ -205,8 +201,7 @@ const Home = () => {
               />
             )}
           </div>
-        </div>
-        <div className="top">
+        {/* <div className="top">
           <div className="img">
             Paris
             <ul>
@@ -241,7 +236,7 @@ const Home = () => {
               <img src={Dubai} alt="" className="i-img"></img>
             </ul>
           </div>
-        </div>
+        </div> */}
       </main>
     </>
   );
