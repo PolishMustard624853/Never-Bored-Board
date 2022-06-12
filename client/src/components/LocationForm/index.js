@@ -62,22 +62,22 @@ const LocationForm = () => {
 
   return (
     <div>
-      <h3>Search Location</h3>
+      {/* <h3>Search Location</h3> */}
 
       {Auth.loggedIn() ? (
         <>
-          <p
+          {/* <p
             className={`m-0 ${
               characterCount === 280 || error ? "text-danger" : ""
             }`}
           >
             Character Count: {characterCount}/280
-          </p>
+          </p> */}
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
-            <div className="col-12 col-lg-9">
+            {/* <div className="col-12 col-lg-9">
               <textarea
                 name="locationText"
                 placeholder="Type location here..."
@@ -86,13 +86,13 @@ const LocationForm = () => {
                 style={{ lineHeight: "1.5", resize: "vertical" }}
                 onChange={handleChange}
               ></textarea>
-            </div>
-
+            </div> */}
+{/* 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
                 Save Location
               </button>
-            </div>
+            </div> */}
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">
                 {error.message}
