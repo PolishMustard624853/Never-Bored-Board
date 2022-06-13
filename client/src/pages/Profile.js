@@ -34,6 +34,8 @@ const Profile = () => {
       </h4>
     );
   }
+console.log(user)
+console.log(localStorage.getItem("saved_restaurant"))
 
   return (
     <div>

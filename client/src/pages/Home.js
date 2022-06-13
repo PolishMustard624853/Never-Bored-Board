@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
-// imgs
-// import Paris from "../images/paris.jpg";
-// import Bangkok from "../images/bangkok.jpg";
-// import London from "../images/london.jpg";
-// import NewYork from "../images/newyork.jpg";
-// import Dubai from "../images/dubai.jpg";
+import { useQuery, useMutation } from "@apollo/client";
+import {ADD_LOCATION} from "../utils/mutations" 
 import "../pages/index.css";
 import { searchRestaurants } from "../utils/api";
 import LocationList from "../components/LocationList";
@@ -34,6 +29,7 @@ const Home = () => {
   const [savedRestaurantIds, setSavedRestaurantIds] = useState(getSavedRestaurantIds());
 
   useEffect(() => {
+
     return () => saveRestaurantIds(savedRestaurantIds);
   });
 
@@ -90,7 +86,7 @@ const Home = () => {
 
     try {
       const response = await searchRestaurants(restaurantToSave, token);
-
+      await useMutation(ADD_LOCATION, restaurantToSave, token);
       if (!response.ok) {
         throw new Error("something went wrong!");
       }
