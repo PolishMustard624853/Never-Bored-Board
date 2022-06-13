@@ -15,7 +15,7 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Never Hungry Board</h1>
           </Link>
-          <p className="m-0" style={{textAlign: "center", backgroundColor: "black", borderRadius: "10px" }}><i>I'm A Potato.. What Else Could I Be?</i></p>
+          <p className="m-0" style={{textAlign: "center", backgroundColor: "black", borderRadius: "10px" }}><i>What are you hungry for?</i></p>
         </div>
         <div>
           {Auth.loggedIn() ? (

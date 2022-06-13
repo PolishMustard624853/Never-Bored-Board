@@ -19,7 +19,7 @@ const Footer = () => {
         © Copyright Protected
         </h3>
         <h4 style={{textAlign: "center", backgroundColor: "pink", borderRadius: "10px" }}>
-          by the Never Bored Board Board of Directors.
+          by The Never Bored Board Board of Directors.
         </h4>
       </div>
     </footer>

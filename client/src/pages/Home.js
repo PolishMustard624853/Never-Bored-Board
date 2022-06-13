@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import {ADD_LOCATION} from "../utils/mutations" 
+// import {ADD_LOCATION} from "../utils/mutations" 
 import "../pages/index.css";
 import { searchRestaurants } from "../utils/api";
 import LocationList from "../components/LocationList";
@@ -9,6 +9,7 @@ import {
   saveRestaurantIds,
   getSavedRestaurantIds,
 } from "../utils/localStorage";
+import {SAVE_RESTAURANT} from '../utils/mutations'
 import { QUERY_LOCATIONS } from "../utils/queries";
 import Auth from "../utils/auth";
 import {
@@ -27,6 +28,8 @@ const Home = () => {
   const [searchedRestaurants, setSearchedRestaurants] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [savedRestaurantIds, setSavedRestaurantIds] = useState(getSavedRestaurantIds());
+
+  const [saveRestaurant, {error}] = useMutation(SAVE_RESTAURANT)
 
   useEffect(() => {
 
@@ -85,11 +88,11 @@ const Home = () => {
     }
 
     try {
-      const response = await searchRestaurants(restaurantToSave, token);
-      await useMutation(ADD_LOCATION, restaurantToSave, token);
-      if (!response.ok) {
-        throw new Error("something went wrong!");
-      }
+      const response  = await saveRestaurant({variables:  {...restaurantToSave}});
+      // await useMutation(ADD_LOCATION, restaurantToSave, token);
+      // if (!response.ok) {
+      //   throw new Error("something went wrong!");
+      // }
 
       // if book successfully saves to user's account, save book id to state
       console.log(restaurantToSave)

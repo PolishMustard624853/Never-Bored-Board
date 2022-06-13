@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Card, CardColumns, Container} from "react-bootstrap"
 
 const LocationList = ({
   locations,
@@ -12,42 +13,39 @@ const LocationList = ({
   }
 
   return (
-    <div>
-      {showTitle && <h3>{title}</h3>}
-      {locations &&
-        locations.map((location) => (
-          <div key={location._id} className="card mb-3">
-            <h4 className="card-header bg-primary text-light p-2 m-0">
-              {showUsername ? (
-                <Link
-                  className="text-light"
-                  to={`/profiles/${location.locationAuthor}`}
-                >
-                  {location.locationAuthor} <br />
-                  <span style={{ fontSize: "1rem" }}>
-                    saved this location on {location.createdAt}
-                  </span>
-                </Link>
-              ) : (
-                <>
-                  <span style={{ fontSize: "1rem" }}>
-                    You saved this location on {location.createdAt}
-                  </span>
-                </>
-              )}
-            </h4>
-            <div className="card-body bg-light p-2">
-              <p>{location.locationText}</p>
-            </div>
-            <Link
-              className="btn btn-primary btn-block btn-squared"
-              to={`/locations/${location._id}`}
-            >
-              Click for details.
-            </Link>
-          </div>
-        ))}
-    </div>
+    <Container>
+        {/* <h2>
+          {searchedRestaurants.length
+            ? `Viewing ${searchedRestaurants.length} results:`
+            : "Search for a restaurant to begin"}
+        </h2> */}
+        <CardColumns>
+          {locations.map((restaurant) => {
+            return (
+              <Card
+                style={{ backgroundColor: "lightblue", borderRadius: "10px" }}
+                key={restaurant.restaurantId}
+                border="dark"
+              >
+                {restaurant.image ? (
+                  <Card.Img
+                    src={restaurant.image}
+                    alt={`The cover for ${restaurant.title}`}
+                    variant="top"
+                  />
+                ) : null}
+                <Card.Body>
+                  <Card.Title><h1>{restaurant.name}</h1></Card.Title>
+                  <p className="small">Address: {restaurant.address}</p>
+                  <Card.Text>{restaurant.description}</Card.Text>
+                  {/* <Card.Text>{restaurant.is_closed.toString()}</Card.Text> */}
+                  <img src={restaurant.photo}></img>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
   );
 };
 
