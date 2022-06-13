@@ -24,19 +24,17 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_LOCATION = gql`
-  mutation addLocation($locationText: String!) {
-    addLocation(locationText: $locationText) {
-      _id
-      locationText
-      locationAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-      }
-    }
+export const SAVE_RESTAURANT = gql`
+  mutation Mutation($name: String!, $description: String!, $address: String!, $photo: String!, $restaurantId: ID!) {
+  addLocation(name: $name, description: $description, address: $address, photo: $photo, restaurantId: $restaurantId) {
+    _id
+    name
+    description
+    address
+    photo
+    restaurantId
   }
+}
 `;
 
 export const ADD_COMMENT = gql`

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 
-import { ADD_LOCATION } from "../../utils/mutations";
+import { ADD_LOCATION, SAVE_RESTAURANT } from "../../utils/mutations";
 import { QUERY_LOCATIONS, QUERY_ME } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
@@ -12,7 +12,7 @@ const LocationForm = () => {
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addLocation, { error }] = useMutation(ADD_LOCATION, {
+  const [addLocation, { error }] = useMutation(SAVE_RESTAURANT, {
     update(cache, { data: { addLocation } }) {
       try {
         const { locations } = cache.readQuery({ query: QUERY_LOCATIONS });

@@ -48,11 +48,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addLocation: async (parent, { locationText }, context) => {
+    addLocation: async (parent, { name, description, address, photo, restaurantId }, context) => {
       if (context.user) {
         const location = await Location.create({
-          locationText,
-          locationAuthor: context.user.username,
+          name, description, address, photo, restaurantId
         });
 
         await User.findOneAndUpdate(

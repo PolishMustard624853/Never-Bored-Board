@@ -11,10 +11,7 @@ const typeDefs = gql`
 
   type Location {
     _id: ID
-    locationText: String
-    locationAuthor: String
-    createdAt: String
-    comments: [Comment]!
+    name: String!, description: String!, address: String!, photo: String!, restaurantId: ID!
   }
 
   type Comment {
@@ -40,7 +37,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addLocation(locationText: String!): Location
+    addLocation(name: String!, description: String!, address: String!, photo: String!, restaurantId: ID! ): Location
     addComment(locationId: ID!, commentText: String!): Location
     removeLocation(locationId: ID!): Location
     removeComment(locationId: ID!, commentId: ID!): Location

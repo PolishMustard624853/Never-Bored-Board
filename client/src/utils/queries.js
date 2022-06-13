@@ -44,17 +44,19 @@ export const QUERY_SINGLE_LOCATION = gql`
 `;
 
 export const QUERY_ME = gql`
-  query me {
-    me {
+  query Query {
+  me {
+    _id
+    username
+    email
+    locations {
       _id
-      username
-      email
-      locations {
-        _id
-        locationText
-        locationAuthor
-        createdAt
-      }
+      name
+      description
+      address
+      photo
+      restaurantId
     }
   }
+}
 `;
